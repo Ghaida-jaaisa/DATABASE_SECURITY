@@ -1,1 +1,57 @@
+CREATE OR REPLACE FUNCTION EMPLOYEE_ID_JOB(
+    object_schema IN VARCHAR2,
+    object_name IN VARCHAR2
+) RETURN VARCHAR2 AS
+    condition VARCHAR2(300);
+    Job hr.employees.job_id%TYPE;
+    email hr.employees.email%TYPE;
+    emp_id NUMBER;
+    IS_MANAGER CHAR(1);
+BEGIN
+    -- retrieve employee id, job, and email
+    SELECT SYS_CONTEXT('emp_context', 'emp_id'),
+           SYS_CONTEXT('emp_context', 'job'),
+           SYS_CONTEXT('emp_context', 'email')
+    INTO EMP_ID, job, email
+    FROM DUAL;
 
+    -- Check if employee is a manager 
+    BEGIN
+SELECT 'Y' INTO IS_MANAGER FROM DUAL
+WHERE EXISTS (SELECT 1 FROM HR.MANAGERS_HR WHERE MANAGER_ID = 102);
+    EXCEPTION
+        WHEN NO_DATA_FOUND THEN
+            IS_MANAGER := 'N';
+    END;
+                   -- Exception for specific users
+                    IF job = 'HR_REP' OR SYS_CONTEXT('USERENV', 'SESSION_USER') = 'HR' THEN 
+                    condition := '';
+                    -- If the user is a manager
+                    ELSIF IS_MANAGER = 'Y' THEN
+                     condition := 'EMPLOYEE_ID IN (SELECT EMPLOYEE_ID FROM HR.EMPLOYEES WHERE MANAGER_ID = ' || emp_id || ')';
+                     -- IF EMP CAN SEE HIS OWN HISTORY 'OR EMPLOYEE_ID = ' || emp_id || 
+                    ELSE 
+                    condition :=   'EMPLOYEE_ID = ' || EMP_ID;
+                 END IF;
+
+    RETURN condition;
+
+EXCEPTION
+    WHEN NO_DATA_FOUND THEN
+        RAISE_APPLICATION_ERROR(-20001, 'Invalid user/email : ' || email);
+    WHEN OTHERS THEN
+        RAISE_APPLICATION_ERROR(-20002, 'An error occurred in the VPD policy function. ' || SQLERRM);
+END;
+/
+
+-------------------------------------------------------------------------------------------------------------
+BEGIN
+DBMS_RLS.add_policy
+(object_schema => ‘HR’ ,
+object_name => 'JOB_HISTORY',
+function_schema => 'SYS',
+policy_name => 'EMP_ID_BY_JOB_READ',
+policy_function => 'EMPLOYEE_ID_JOB',
+statement_types => 'SELECT, INDEX');
+END;
+/
