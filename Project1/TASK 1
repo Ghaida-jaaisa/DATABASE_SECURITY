@@ -17,11 +17,11 @@ BEGIN
 
     -- Check if employee is a manager 
     BEGIN
-SELECT 'Y' INTO IS_MANAGER FROM DUAL
-WHERE EXISTS (SELECT 1 FROM HR.MANAGERS_HR WHERE MANAGER_ID = 102);
+    SELECT 'Y' INTO IS_MANAGER FROM DUAL
+    WHERE EXISTS (SELECT 1 FROM HR.MANAGERS_HR WHERE MANAGER_ID = EMP_ID);
     EXCEPTION
-        WHEN NO_DATA_FOUND THEN
-            IS_MANAGER := 'N';
+    WHEN NO_DATA_FOUND THEN
+    IS_MANAGER := 'N';
     END;
                    -- Exception for specific users
                     IF job = 'HR_REP' OR SYS_CONTEXT('USERENV', 'SESSION_USER') = 'HR' THEN 
@@ -30,12 +30,12 @@ WHERE EXISTS (SELECT 1 FROM HR.MANAGERS_HR WHERE MANAGER_ID = 102);
                     ELSIF IS_MANAGER = 'Y' THEN
                      condition := 'EMPLOYEE_ID IN (SELECT EMPLOYEE_ID FROM HR.EMPLOYEES WHERE MANAGER_ID = ' || emp_id || ')';
                      -- IF EMP CAN SEE HIS OWN HISTORY 'OR EMPLOYEE_ID = ' || emp_id || 
-                    ELSE 
+                    ELSIF IS_MANAGER = 'N' THEN
                     condition :=   'EMPLOYEE_ID = ' || EMP_ID;
+                    ELSE 
+                    CONDITION := '1 = 0 ' ;
                  END IF;
-
     RETURN condition;
-
 EXCEPTION
     WHEN NO_DATA_FOUND THEN
         RAISE_APPLICATION_ERROR(-20001, 'Invalid user/email : ' || email);
