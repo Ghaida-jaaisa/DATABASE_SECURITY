@@ -1,0 +1,59 @@
+CREATE OR REPLACE FUNCTION DEPARTMENT_LOCATION_RLS (
+    p_schema IN VARCHAR2,
+    p_object IN VARCHAR2
+) RETURN VARCHAR2 AS
+    condition VARCHAR2(1000);
+    emp_id NUMBER;
+    job HR.EMPLOYEES.JOB_ID%TYPE;
+    IS_MANAGER CHAR(1) ;
+    email HR.EMPLOYEES.EMAIL%TYPE; 
+    
+BEGIN
+-- EMPLOYEE INFO 
+        SELECT SYS_CONTEXT('emp_context', 'emp_id'), SYS_CONTEXT('emp_context', 'job') ,  SYS_CONTEXT('emp_context', 'email')
+        INTO emp_id, job, email 
+        FROM dual;
+
+    -- Check if employee is a departent manager 
+    BEGIN
+    SELECT 'Y' INTO IS_MANAGER FROM DUAL
+    WHERE EXISTS (SELECT 1 FROM HR.DEPARTMENT_MANAGER WHERE MANAGER_ID = EMP_ID);
+    EXCEPTION
+    WHEN NO_DATA_FOUND THEN
+    IS_MANAGER := 'N';
+    END;
+
+
+     IF job = 'HR_REP' OR SYS_CONTEXT('USERENV', 'SESSION_USER') = 'HR' THEN 
+    condition := '' ;
+
+        ELSIF IS_MANAGER = 'Y' THEN
+        CONDITION := 'DEPARTMENT_ID = ( SELECT DEPARTMENT_ID FROM HR.DEPARTMENTS WHERE MANAGER_ID = ' || EMP_ID || ')' ; 
+        
+        ELSE
+        condition := '1=0';
+        
+        END IF;
+    RETURN condition;
+    
+EXCEPTION
+    WHEN NO_DATA_FOUND THEN
+        RAISE_APPLICATION_ERROR(-20001, 'Invalid user/email : ' || email);
+    WHEN OTHERS THEN
+        RAISE_APPLICATION_ERROR(-20002, 'An error occurred in the VPD policy function. ' || SQLERRM);
+END;
+/
+-----------------------------------------------------------------------------------------
+BEGIN
+    DBMS_RLS.ADD_POLICY (
+        object_schema      => 'HR',
+        object_name        => 'DEPARTMENTS',
+        policy_name        => 'dept_location_update',
+        function_schema    => 'SYS',
+        policy_function    => 'DEPARTMENT_LOCATION_RLS',
+        statement_types    => 'UPDATE' , 
+        update_check => TRUE
+    );
+END;
+/
+
