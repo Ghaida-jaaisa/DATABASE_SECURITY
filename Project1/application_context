@@ -1,0 +1,46 @@
+-- create context 
+CREATE OR REPLACE CONTEXT emp_context USING current_emp_pkg  ;
+
+-- create package header
+CREATE OR REPLACE PACKAGE current_emp_pkg IS
+PROCEDURE set_emp_info
+END ; 
+/
+
+-- create package body
+CREATE OR REPLACE PACKAGE BODY current_emp_pkg IS
+PROCEDURE set_emp_info
+IS
+v_employee_id          	hr.employees.employee_id%TYPE ;
+v_first_name               	hr.employees.first_name%TYPE;
+v_last_name               	hr.employees.last_name%TYPE;
+v_job 			hr.employees.job_id%TYPE;
+
+ 
+BEGIN
+SELECT employee_id , first_name , last_name , job_id
+INTO v_employee_id , v_first_name , v_last_name , v_job
+FROM hr.employees 
+WHERE email = SYS_CONTEXT('USERENV' , 'SESSION_USER' ) ;
+
+DBMS_SESSION.SET_CONTEXT('emp_context' , 'emp_id' , v_employee_id) ;
+DBMS_SESSION.SET_CONTEXT('emp_context' , 'name' , v_first_name || ' ' || v_last_name ) ;
+DBMS_SESSION.SET_CONTEXT('emp_context' , 'job' , v_job ) ; 
+DBMS_SESSION.SET_CONTEXT('emp_context' , 'email', SYS_CONTEXT('USERENV' , 'SESSION_USER')) ;
+EXCEPTION
+WHEN NO_DATA_FOUND
+THEN NULL ;
+END ;
+END;
+/
+
+-- create trigger 
+-	CREATE TRIGGER 
+CREATE OR REPLACE TRIGGER emp_logon
+AFTER LOGIN ON DATABASE
+BEGIN 
+Current_emp_pkg.set_emp_info ; 
+END ; 
+/ 
+
+
