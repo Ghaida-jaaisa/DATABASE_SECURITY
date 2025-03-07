@@ -1,1 +1,12 @@
+BEGIN
+DBMS_RLS.add_policy
+(object_schema => 'HR',
+object_name => 'EMPLOYEES’,
+function_schema => 'SYS',
+policy_name => 'EMP_ID_SALARY',
+policy_function => 'EMPLOYEE_ID_RLS',
+statement_types => 'SELECT',
+sec_relevant_cols => 'SALARY',
+sec_relevant_cols_opt => DBMS_RLS.ALL_ROWS);
+END;
 
