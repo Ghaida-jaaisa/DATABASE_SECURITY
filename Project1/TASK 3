@@ -1,1 +1,26 @@
+CREATE OR REPLACE FUNCTION check_working_hours_employees (
+    object_schema IN VARCHAR2,
+    object_name   IN VARCHAR2
+) RETURN VARCHAR2 AS
+ condition    VARCHAR2(500);
+ email hr.employees.email%TYPE ; 
+ 
+BEGIN
+ select SYS_CONTEXT('EMP_CONTEXT' , 'EMAIL' )INTO EMAIL FROM DUAL ; 
 
+
+IF  TO_NUMBER(TO_CHAR(SYSDATE, 'HH24')) < 8 OR
+    TO_NUMBER(TO_CHAR(SYSDATE, 'HH24')) > 17 THEN
+-- raise_application_error (-20005 , 'Out of work time') ; 
+ RETURN '1 = 0';
+END IF;
+
+EXCEPTION
+    WHEN no_data_found 
+    THEN
+        raise_application_error(-20001, 'Invalid user/email: ' || email);
+    WHEN OTHERS
+    THEN
+        raise_application_error(-20002, 'An error occurred in the VPD policy function: ' || sqlerrm);
+END;
+/
