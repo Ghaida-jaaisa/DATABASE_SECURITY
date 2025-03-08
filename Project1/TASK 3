@@ -11,8 +11,7 @@ BEGIN
 
 IF  TO_NUMBER(TO_CHAR(SYSDATE, 'HH24')) < 8 OR
     TO_NUMBER(TO_CHAR(SYSDATE, 'HH24')) > 17 THEN
--- raise_application_error (-20005 , 'Out of work time') ; 
- RETURN '1 = 0';
+RETURN '1=0' ;
 END IF;
 
 EXCEPTION
@@ -22,5 +21,26 @@ EXCEPTION
     WHEN OTHERS
     THEN
         raise_application_error(-20002, 'An error occurred in the VPD policy function: ' || sqlerrm);
+END;
+/
+
+BEGIN
+DBMS_RLS.add_policy
+(object_schema => 'HR',
+ object_name => 'EMPLOYEES' ,
+function_schema => 'SYS',
+policy_name => 'EMPLOYEES_WORKING_HOURS',
+policy_function => 'check_working_hours_employees',
+statement_types => 'SELECT'
+);
+END;
+/
+
+BEGIN
+DBMS_RLS.DROP_policy
+(object_schema => 'HR',
+ object_name => 'EMPLOYEES' ,
+policy_name => 'EMPLOYEES_WORKING_HOURS'
+);
 END;
 /
