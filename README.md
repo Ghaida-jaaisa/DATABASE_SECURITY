@@ -9,7 +9,7 @@ o Allows HR Managers to access all records.
 ➢ Hint: You need to use 'JOB_ID','EMPLOYEE_ID' and 'MANAGER_ID'
 from EMPLOYEES table.
 
-## TASK 2 + 3 
+## TASK 2 
 2- Salary Policy (Column Fire with Column Filter): This column-level policy allows
 employees to access their own data inside EMPLOYEES table, including salary
 information, as well as the data of other employees, with the exception of salary
@@ -18,6 +18,7 @@ all data including salaries of all employees.
 ➢ Hint: You need to use 'JOB_ID' and 'EMPLOYEE_ID' from EMPLOYEES
 table.
 
+## TASK 3
 3- Time-Based Access: This policy controls access to the EMPLOYEES table only during
 office hours, applied to all members of the organization.
 
