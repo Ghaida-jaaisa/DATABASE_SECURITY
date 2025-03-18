@@ -90,7 +90,9 @@ drop column phone_number ;
 
 drop trigger UPDATE_JOB_HISTORY ;
 
--- 
+-- DROP DEPARTMENT_ID COLUMN 
+ALTER TABLE EMPLOYEES 
+DROP COLUMN DEPARTMENT_ID ; 
 
 
 
