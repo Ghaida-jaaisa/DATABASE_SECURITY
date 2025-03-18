@@ -10,3 +10,14 @@ END;
 /
 
 --- policy 2 
+BEGIN
+   DBMS_RLS.enable_policy(
+ object_schema => 'HR',
+object_name => 'EMPLOYEES' ,
+policy_name => 'EMP_ID_SAL_CFRF_READ',
+ENABLE => false
+   );
+END;
+/
+
+--- policy 3 
