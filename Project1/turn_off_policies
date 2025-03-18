@@ -32,4 +32,13 @@ END;
 /
 
 -- policy 4 
+BEGIN
+   DBMS_RLS.enable_policy(
+ object_schema      => 'HR',
+        object_name        => 'DEPARTMENTS',
+        policy_name        => 'dept_location_update',
+ENABLE => false
+   );
+END;
+/
 
