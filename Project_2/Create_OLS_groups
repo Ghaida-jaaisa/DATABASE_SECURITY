@@ -1,0 +1,82 @@
+BEGIN
+sa_components.create_group
+(policy_name => 'EMP_EVL_POL',
+long_name => 'PRESIDENT',
+short_name => 'PRES',
+group_num => 1000);
+END;
+/
+---
+
+BEGIN
+sa_components.create_group
+(policy_name => 'EMP_EVL_POL',
+long_name => 'FINANCE',
+short_name => 'FIN',
+group_num => 2000,
+parent_name => 'PRES');
+END;
+/
+---- 
+BEGIN
+sa_components.create_group
+(policy_name => 'EMP_EVL_POL',
+long_name => 'INFORMATION TECHNOLOGY',
+short_name => 'IT',
+group_num => 3000,
+parent_name => 'PRES');
+END;
+/
+---- 
+BEGIN
+sa_components.create_group
+(policy_name => 'EMP_EVL_POL',
+long_name => 'HUMAN RESOURCES',
+short_name => 'HR',
+group_num => 4000,
+parent_name => 'PRES');
+END;
+/
+---- 
+BEGIN
+sa_components.create_group
+(policy_name => 'EMP_EVL_POL',
+long_name => 'SALE',
+short_name => 'SA',
+group_num => 2010,
+parent_name => 'FIN');
+END;
+/
+----
+BEGIN
+sa_components.create_group
+(policy_name => 'EMP_EVL_POL',
+long_name => 'MARKETING',
+short_name => 'MK',
+group_num => 2020,
+parent_name => 'FIN');
+END;
+/
+---- 
+BEGIN
+sa_components.create_group
+(policy_name => 'EMP_EVL_POL',
+long_name => 'SUPPORT',
+short_name => 'SP',
+group_num => 3010,
+parent_name => 'IT');
+END;
+/
+---------
+BEGIN
+sa_components.create_group
+(policy_name => 'EMP_EVL_POL',
+long_name => 'DEVELOPMENT',
+short_name => 'DV',
+group_num => 3020,
+parent_name => 'IT');
+END;
+/
+--- verify 
+  SELECT * FROM DBA_SA_GROUPS
+ORDER BY group_num;
