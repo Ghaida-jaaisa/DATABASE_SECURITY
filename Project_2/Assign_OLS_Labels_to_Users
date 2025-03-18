@@ -29,3 +29,32 @@ END;
 /
 ------------------------------------------------
 -- HR_OTHER_GZ
+BEGIN
+sa_user_admin.set_user_labels (
+policy_name => 'EMP_EVL_POL',
+user_name => 'HR_OTHERS_GZ',
+max_read_label => 'R:GZ:HR');
+END;
+/
+
+------------------------------------------------
+-- SP_OTHERS_WB
+
+BEGIN
+sa_user_admin.set_user_labels (
+policy_name => 'EMP_EVL_POL',
+user_name => 'SP_OTHERS_WB',
+max_read_label => 'R:WB:SP');
+END;
+/
+
+BEGIN
+sa_user_admin.set_user_labels (
+policy_name => 'EMP_EVL_POL',
+user_name => 'SP_OTHERS_WB',
+max_read_label => 'U:WB:SP');
+END;
+/
+
+
+
