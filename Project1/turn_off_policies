@@ -21,3 +21,15 @@ END;
 /
 
 --- policy 3 
+BEGIN
+   DBMS_RLS.enable_policy(
+object_schema => 'HR',
+ object_name => 'EMPLOYEES' ,
+policy_name => 'EMPLOYEES_WORKING_HOURS' ,
+ENABLE => false
+   );
+END;
+/
+
+-- policy 4 
+
