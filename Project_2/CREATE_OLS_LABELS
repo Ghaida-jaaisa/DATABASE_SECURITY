@@ -1,0 +1,400 @@
+-- for PRESIDENT information:
+BEGIN
+sa_label_admin.create_label
+(policy_name => 'EMP_EVL_POL',
+label_tag => 90010,
+label_value => 'TS:WB,GZ:PRES',
+data_label => TRUE);
+ END;
+ /
+ --------------------------------------------------------------------
+ ---------- Westbank branch -----------
+--o	Finance department :
+
+-- For Managers  :
+BEGIN
+sa_label_admin.create_label
+(policy_name => 'EMP_EVL_POL',
+label_tag => 81200,
+label_value => 'S:WB:FIN',
+data_label => TRUE);
+END;
+/
+
+ -- For OTHERS 
+BEGIN
+sa_label_admin.create_label
+(policy_name => 'EMP_EVL_POL',
+label_tag => 71200,
+label_value => 'R:WB:FIN',
+data_label => TRUE);
+END;
+/
+--------- 
+
+--o	SALE Department 
+
+--For Managers
+BEGIN
+sa_label_admin.create_label
+(policy_name => 'EMP_EVL_POL',
+label_tag => 81210,
+label_value => 'S:WB:SA',
+data_label => TRUE);
+END;
+/
+
+-- For others 
+BEGIN
+sa_label_admin.create_label
+(policy_name => 'EMP_EVL_POL',
+label_tag => 71210,
+label_value => 'R:WB:SA',
+data_label => TRUE);
+END;
+/
+
+BEGIN
+sa_label_admin.create_label
+(policy_name => 'EMP_EVL_POL',
+label_tag => 61210,
+label_value => 'U:WB:SA',
+data_label => TRUE);
+END;
+/
+
+---- 
+
+--o	Marketing Department 
+
+--For Managers
+BEGIN
+sa_label_admin.create_label
+(policy_name => 'EMP_EVL_POL',
+label_tag => 81220,
+label_value => 'S:WB:MK',
+data_label => TRUE);
+END;
+/
+
+-- For others 
+BEGIN
+sa_label_admin.create_label
+(policy_name => 'EMP_EVL_POL',
+label_tag => 71220,
+label_value => 'R:WB:MK',
+data_label => TRUE);
+END;
+/
+
+BEGIN
+sa_label_admin.create_label
+(policy_name => 'EMP_EVL_POL',
+label_tag => 61220,
+label_value => 'U:WB:MK',
+data_label => TRUE);
+END;
+/
+
+------------------------------------------------
+--o	IT Department 
+
+--For Managers
+BEGIN
+sa_label_admin.create_label
+(policy_name => 'EMP_EVL_POL',
+label_tag => 81300,
+label_value => 'S:WB:IT',
+data_label => TRUE);
+END;
+/
+
+-- For others 
+BEGIN
+sa_label_admin.create_label
+(policy_name => 'EMP_EVL_POL',
+label_tag => 71300,
+label_value => 'R:WB:IT',
+data_label => TRUE);
+END;
+/
+------------------------------------------
+--o	SUPPORT Department 
+
+--For Managers
+BEGIN
+sa_label_admin.create_label
+(policy_name => 'EMP_EVL_POL',
+label_tag => 81310,
+label_value => 'S:WB:SP',
+data_label => TRUE);
+END;
+/
+
+-- For others 
+BEGIN
+sa_label_admin.create_label
+(policy_name => 'EMP_EVL_POL',
+label_tag => 71310,
+label_value => 'R:WB:SP',
+data_label => TRUE);
+END;
+/
+
+BEGIN
+sa_label_admin.create_label
+(policy_name => 'EMP_EVL_POL',
+label_tag => 61310,
+label_value => 'U:WB:SP',
+data_label => TRUE);
+END;
+/
+------------------------------------------
+--o	DEVELOPMENT Department 
+
+--For Managers
+BEGIN
+sa_label_admin.create_label
+(policy_name => 'EMP_EVL_POL',
+label_tag => 81320,
+label_value => 'S:WB:DV',
+data_label => TRUE);
+END;
+/
+
+-- For others 
+BEGIN
+sa_label_admin.create_label
+(policy_name => 'EMP_EVL_POL',
+label_tag => 71320,
+label_value => 'R:WB:DV',
+data_label => TRUE);
+END;
+/
+
+BEGIN
+sa_label_admin.create_label
+(policy_name => 'EMP_EVL_POL',
+label_tag => 61320,
+label_value => 'U:WB:DV',
+data_label => TRUE);
+END;
+/
+
+
+------------------------------------------
+--o	HR Department 
+
+--For Managers
+BEGIN
+sa_label_admin.create_label
+(policy_name => 'EMP_EVL_POL',
+label_tag => 81400,
+label_value => 'S:WB:HR',
+data_label => TRUE);
+END;
+/
+
+-- For others 
+BEGIN
+sa_label_admin.create_label
+(policy_name => 'EMP_EVL_POL',
+label_tag => 71400,
+label_value => 'R:WB:HR',
+data_label => TRUE);
+END;
+/
+-----------------------
+
+---------- GAZA branch ------------------------------------------------------------------------
+--o	Finance department :
+
+-- For Managers  :
+BEGIN
+sa_label_admin.create_label
+(policy_name => 'EMP_EVL_POL',
+label_tag => 82200,
+label_value => 'S:GZ:FIN',
+data_label => TRUE);
+END;
+/
+
+ -- For OTHERS 
+BEGIN
+sa_label_admin.create_label
+(policy_name => 'EMP_EVL_POL',
+label_tag => 72200,
+label_value => 'R:GZ:FIN',
+data_label => TRUE);
+END;
+/
+--------- 
+
+--o	SALE Department 
+
+--For Managers
+BEGIN
+sa_label_admin.create_label
+(policy_name => 'EMP_EVL_POL',
+label_tag => 82210,
+label_value => 'S:GZ:SA',
+data_label => TRUE);
+END;
+/
+
+-- For others 
+BEGIN
+sa_label_admin.create_label
+(policy_name => 'EMP_EVL_POL',
+label_tag => 72210,
+label_value => 'R:GZ:SA',
+data_label => TRUE);
+END;
+/
+
+BEGIN
+sa_label_admin.create_label
+(policy_name => 'EMP_EVL_POL',
+label_tag => 62210,
+label_value => 'U:GZ:SA',
+data_label => TRUE);
+END;
+/
+---- 
+
+--o	Marketing Department 
+
+--For Managers
+BEGIN
+sa_label_admin.create_label
+(policy_name => 'EMP_EVL_POL',
+label_tag => 82220,
+label_value => 'S:GZ:MK',
+data_label => TRUE);
+END;
+/
+
+-- For others 
+BEGIN
+sa_label_admin.create_label
+(policy_name => 'EMP_EVL_POL',
+label_tag => 72220,
+label_value => 'R:GZ:MK',
+data_label => TRUE);
+END;
+/
+BEGIN
+sa_label_admin.create_label
+(policy_name => 'EMP_EVL_POL',
+label_tag => 62220,
+label_value => 'U:GZ:MK',
+data_label => TRUE);
+END;
+/
+
+------------------------------------------------
+--o	IT Department 
+
+--For Managers
+BEGIN
+sa_label_admin.create_label
+(policy_name => 'EMP_EVL_POL',
+label_tag => 82300,
+label_value => 'S:GZ:IT',
+data_label => TRUE);
+END;
+/
+
+-- For others 
+BEGIN
+sa_label_admin.create_label
+(policy_name => 'EMP_EVL_POL',
+label_tag => 72300,
+label_value => 'R:GZ:IT',
+data_label => TRUE);
+END;
+/
+------------------------------------------
+--o	SUPPORT Department 
+
+--For Managers
+BEGIN
+sa_label_admin.create_label
+(policy_name => 'EMP_EVL_POL',
+label_tag => 82310,
+label_value => 'S:GZ:SP',
+data_label => TRUE);
+END;
+/
+
+-- For others 
+BEGIN
+sa_label_admin.create_label
+(policy_name => 'EMP_EVL_POL',
+label_tag => 72310,
+label_value => 'R:GZ:SP',
+data_label => TRUE);
+END;
+/
+BEGIN
+sa_label_admin.create_label
+(policy_name => 'EMP_EVL_POL',
+label_tag => 62310,
+label_value => 'U:GZ:SP',
+data_label => TRUE);
+END;
+/
+------------------------------------------
+--o	DEVELOPMENT Department 
+
+--For Managers
+BEGIN
+sa_label_admin.create_label
+(policy_name => 'EMP_EVL_POL',
+label_tag => 82320,
+label_value => 'S:GZ:DV',
+data_label => TRUE);
+END;
+/
+
+-- For others 
+BEGIN
+sa_label_admin.create_label
+(policy_name => 'EMP_EVL_POL',
+label_tag => 72320,
+label_value => 'R:GZ:DV',
+data_label => TRUE);
+END;
+/
+BEGIN
+sa_label_admin.create_label
+(policy_name => 'EMP_EVL_POL',
+label_tag => 62320,
+label_value => 'U:GZ:DV',
+data_label => TRUE);
+END;
+/
+
+
+------------------------------------------
+--o	HR Department 
+
+--For Managers
+BEGIN
+sa_label_admin.create_label
+(policy_name => 'EMP_EVL_POL',
+label_tag => 82400,
+label_value => 'S:GZ:HR',
+data_label => TRUE);
+END;
+/
+
+-- For others 
+BEGIN
+sa_label_admin.create_label
+(policy_name => 'EMP_EVL_POL',
+label_tag => 72400,
+label_value => 'R:GZ:HR',
+data_label => TRUE);
+END;
+/
