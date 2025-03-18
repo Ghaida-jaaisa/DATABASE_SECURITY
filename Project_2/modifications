@@ -6,3 +6,27 @@ ADD evaluation INT;
 ALTER TABLE employees
 ADD CONSTRAINT evaluation_check CHECK (evaluation BETWEEN 1 AND 5);
 
+/*-------------------------------------------------------*/ 
+---- SETTING VALUE FOR EVALUATION COLUMN 
+
+UPDATE HR.EMPLOYEES 
+SET evaluation = 2 
+WHERE SALARY >= 5000 AND SALARY < 8000 ;
+
+--------- 
+
+UPDATE HR.EMPLOYEES 
+SET evaluation =  3
+WHERE SALARY >= 8000 AND SALARY < 11000 ;
+
+--- 
+UPDATE HR.EMPLOYEES 
+SET evaluation = 4
+WHERE SALARY >= 11000 AND SALARY < 14000 ;
+
+---- 
+UPDATE HR.EMPLOYEES 
+SET evaluation = 2 
+WHERE SALARY >= 14000;
+
+/*-----------------------------------*/ 
