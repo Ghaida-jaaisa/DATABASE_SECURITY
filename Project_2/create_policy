@@ -1,5 +1,16 @@
+-- CREATE POLICY 
 BEGIN
 sa_sysdba.create_policy (
 policy_name => 'EMP_EVL_POL');
+END;
+/
+
+-- APPLY POLICY
+BEGIN
+sa_policy_admin.apply_table_policy
+(policy_name => 'EMP_EVL_POL',
+schema_name => 'HR',
+table_name => 'EMPLOYEES',
+table_options => 'ALL_CONTROL');
 END;
 /
