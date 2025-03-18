@@ -1,0 +1,22 @@
+UPDATE HR.EMPLOYEES 
+SET EMP_EVL_POL_COL = char_to_label('EMP_EVL_POL', 
+    (CASE Type 
+        WHEN 'Competence' THEN 'TS'
+        WHEN 'Resource-Management' THEN 'S'
+        WHEN 'Planning' THEN 'R'
+        WHEN 'Communication' THEN 'U'
+    END) || ':' ||
+    (CASE Location 
+        WHEN 'Westbank' THEN 'WB'
+        WHEN 'Gaza' THEN 'GZ'
+    END) || ':' ||
+    (CASE Department 
+        WHEN 'FINANCE' THEN 'FIN'
+        WHEN 'INFROMATION TECHNOLOGY' THEN 'IT'
+        WHEN 'HUMAN RESOURCES' THEN 'HR'
+        WHEN 'SALE' THEN 'SA'
+        WHEN 'MARKETING' THEN 'MK'
+        WHEN 'SUPPORT' THEN 'SP'
+        WHEN 'DEVELOPMENT' THEN 'DV'
+    END)
+);
