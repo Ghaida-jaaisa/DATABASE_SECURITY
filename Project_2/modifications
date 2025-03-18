@@ -1,3 +1,8 @@
 -- add evalution column 
 ALTER TABLE employees
-ADD COLUMN evaluation INT CHECK (evaluation BETWEEN 1 AND 5);
+ADD evaluation INT;
+
+-- add constraint 
+ALTER TABLE employees
+ADD CONSTRAINT evaluation_check CHECK (evaluation BETWEEN 1 AND 5);
+
