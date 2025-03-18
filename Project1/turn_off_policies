@@ -1,1 +1,12 @@
+-- policy 1 
+BEGIN
+   DBMS_RLS.enable_policy(
+  object_schema => 'HR' ,
+object_name => 'JOB_HISTORY' ,
+ policy_name => 'EMP_ID_BY_JOB_READ',
+ENABLE => false
+   );
+END;
+/
 
+--- policy 2 
