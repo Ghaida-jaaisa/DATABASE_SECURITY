@@ -30,3 +30,10 @@ SET evaluation = 2
 WHERE SALARY >= 14000;
 
 /*-----------------------------------*/ 
+
+-- ADD TYPE COLUMN 
+ALTER TABLE employees
+ADD TYPE VARCHAR2(25);
+
+
+
