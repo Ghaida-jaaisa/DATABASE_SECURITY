@@ -1,1 +1,23 @@
+BEGIN
+sa_components.create_compartment
+(policy_name => 'EMP_EVL_POL',
+long_name => 'WESTBANK',
+short_name => 'WB',
+comp_num => 1000);
+END;
+/
+--- 
 
+BEGIN
+sa_components.create_compartment
+(policy_name => 'EMP_EVL_POL',
+long_name => 'GAZA',
+short_name => 'GZ',
+comp_num => 2000);
+END;
+/
+
+-- VERIFY 
+SELECT * FROM dba_sa_compartments
+WHERE policy_name = 'EMP_EVL_POL'
+ORDER BY comp_num;
