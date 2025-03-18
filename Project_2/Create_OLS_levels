@@ -1,0 +1,45 @@
+-- TOP SECRET 
+BEGIN
+sa_components.create_level
+(policy_name => 'EMP_EVL_POL',
+long_name => 'TOP SECRET',
+short_name => 'TS',
+level_num => 9000);
+END;
+/
+
+-- SECRET 
+BEGIN
+sa_components.create_level
+(policy_name => 'EMP_EVL_POL',
+long_name => 'SECRET',
+short_name => 'S',
+level_num => 8000);
+END;
+/
+
+-- RESTRICTED 
+BEGIN
+sa_components.create_level
+(policy_name => 'EMP_EVL_POL',
+long_name => 'RESTRICTED',
+short_name => 'R',
+level_num => 7000);
+END;
+/
+
+-- UNCLASSIFIED
+BEGIN
+sa_components.create_level
+(policy_name => 'EMP_EVL_POL',
+long_name => 'UNCLASSIFIED',
+short_name => 'U',
+level_num => 6000);
+END;
+/
+
+---- CHECKING 
+SELECT * FROM dba_sa_levels
+WHERE policy_name = 'EMP_EVL_POL'
+ORDER BY level_num DESC;
+
