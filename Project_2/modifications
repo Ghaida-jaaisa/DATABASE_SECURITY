@@ -35,5 +35,65 @@ WHERE SALARY >= 14000;
 ALTER TABLE employees
 ADD TYPE VARCHAR2(25);
 
+---------------------------------------------------
+setting value for type 
+
+UPDATE EMPLOYEES 
+SET TYPE = 'Competence'
+where employee_id <= 120 ;
+
+UPDATE EMPLOYEES 
+SET TYPE = 'Resource-Management'
+where employee_id > 120 and employee_id  < 140  ;
+
+UPDATE EMPLOYEES 
+SET TYPE = 'Planning'
+where employee_id >= 140 and employee_id  < 160  ;
+
+UPDATE EMPLOYEES 
+SET TYPE = 'Communication'
+where employee_id >= 160  ;
+
+----------- insert data 
+
+-- drop unique email constraint 
+alter table employees 
+drop CONSTRAINT EMP_EMAIL_UK ;
+
+-- drop primary key constraint EMP_EMP_ID_PK  == > Can't violated constriant 
+
+SELECT a.table_name, a.constraint_name, a.column_name
+FROM all_cons_columns a
+JOIN all_constraints c ON a.constraint_name = c.constraint_name
+WHERE c.constraint_type = 'R'
+  AND c.r_constraint_name = 'EMP_EMP_ID_PK';
+
+-- add location 
+ALTER TABLE employees
+ADD LOCATION VARCHAR2(25);
+
+-- setting values 
+update employees
+set location = 'Westbank' 
+where employee_id > 150 ; 
+
+update employees
+set location = 'Gaza' 
+where employee_id <= 150 ; 
+
+
+-- drop phone number 
+alter table employees 
+drop column phone_number ;
+
+-- drop job_histroy table + triggers 
+
+drop trigger UPDATE_JOB_HISTORY ;
+
+-- 
+
+
+
+
 
 
