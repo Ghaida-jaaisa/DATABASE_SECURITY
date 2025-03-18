@@ -1,0 +1,31 @@
+-- PRESIDENT
+BEGIN
+sa_user_admin.set_user_labels(
+policy_name => 'EMP_EVL_POL',
+user_name => 'PRESIDENT',
+max_read_label => 'TS:WB,GZ:PRES'
+);
+END;
+/
+---------------------------------------------------------------------------------
+-- FIN_MANAGER_WB
+
+BEGIN
+sa_user_admin.set_user_labels (
+policy_name => 'EMP_EVL_POL',
+user_name => 'FIN_MANAGER_WB',
+max_read_label => 'S:WB:FIN');
+END;
+/
+-------------------------------------------------------
+-- SA_MANAGER_GZ
+
+BEGIN
+sa_user_admin.set_user_labels (
+policy_name => 'EMP_EVL_POL',
+user_name => 'SA_MANAGER_GZ',
+max_read_label => 'S:GZ:SA');
+END;
+/
+------------------------------------------------
+-- HR_OTHER_GZ
