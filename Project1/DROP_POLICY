@@ -1,0 +1,35 @@
+BEGIN
+DBMS_RLS.DROP_policy
+(object_schema => 'HR',
+ object_name => 'EMPLOYEES' ,
+policy_name => 'EMPLOYEES_WORKING_HOURS'
+);
+END;
+/
+---------
+BEGIN
+DBMS_RLS.DROP_policy
+(object_schema => 'HR' ,
+object_name => 'JOB_HISTORY' ,
+ policy_name => 'EMP_ID_BY_JOB_READ'
+);
+END;
+/
+-------------
+BEGIN
+DBMS_RLS.DROP_policy
+( object_schema => 'HR',
+object_name => 'EMPLOYEES' ,
+policy_name => 'EMP_ID_SAL_CFRF_READ'
+);
+END;
+/
+----------------------
+BEGIN
+DBMS_RLS.DROP_policy
+( object_schema      => 'HR',
+        object_name        => 'DEPARTMENTS',
+        policy_name        => 'dept_location_update'
+);
+END;
+/
