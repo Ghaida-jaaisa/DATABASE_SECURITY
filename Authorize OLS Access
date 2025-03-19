@@ -1,0 +1,11 @@
+BEGIN
+SA_USER_ADMIN.SET_USER_PRIVS(
+policy_name => 'EMP_EVL_POL',
+user_name => 'HR_OTHERS_GZ',
+privileges => 'READ');
+END;
+/
+
+-- VERIFY 
+SELECT user_name, policy_name, user_privileges
+FROM dba_sa_user_privs WHERE policy_name = 'EMP_EVL_POL';
